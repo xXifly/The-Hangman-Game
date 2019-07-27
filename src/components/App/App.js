@@ -15,6 +15,21 @@ class App extends Component {
     win: false
   }
 
+  action = char => {
+    const { secretWord, knownWord } = this.state
+
+    for (let index = 0; index < secretWord.length; index++) {
+      if(secretWord[index] === char) {
+        console.log(secretWord[index])
+        knownWord[index] = char
+      }      
+    }
+
+    this.setState({ knownWord: knownWord })
+
+    return
+  }
+
   render() {
     const { user, secretWord, knownWord, guesses, win } = this.state
     return (
@@ -25,7 +40,7 @@ class App extends Component {
           )}
 
           {user !== null && win === false && (
-            <Game knownWord={knownWord} />
+            <Game knownWord={knownWord} onClick={this.action} />
           )}
 
           {win === true && (
