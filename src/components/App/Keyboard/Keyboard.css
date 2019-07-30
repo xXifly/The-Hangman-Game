@@ -1,0 +1,9 @@
+.keyboard {
+    max-width: 450px;
+    margin: auto;
+    height: 200px;
+}
+
+.keyboard .message {
+    margin-bottom: 10px;
+}

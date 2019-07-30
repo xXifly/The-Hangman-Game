@@ -1,18 +1,18 @@
-.win {
+.lose {
     height: 200px;
 }
 
-.win .victory-panel {
+.lose .defeat-panel {
     text-align: center;
     margin-bottom: 50px;
 }
 
-.win .victory {
+.lose .defeat {
     font-size: 40px;
     color: #ffc107;
     font-weight: bold;
 }
 
-.win .play-again {
-    text-align: center;
+.lose .play-again {
+    text-align:center;
 }
