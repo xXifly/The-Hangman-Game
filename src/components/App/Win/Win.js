@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 
 import './Win.css'
 
-const Win = (secretWord) => (
+const Win = ({ playAgain }) => (
     <div className="win">
-        Victoire
+        Victoire !
+
+        <button onClick={() => playAgain()}> Rejouer </button>
     </div>
 )
   

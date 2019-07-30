@@ -12,40 +12,50 @@ class App extends Component {
     secretWord: "CHOCOLAT",
     knownWord: ['_','_','_','_','_','_','_','_'],
     guesses: 0,
-    win: false
+    foundLetters: 0
   }
 
   action = char => {
-    const { secretWord, knownWord } = this.state
-
+    const { secretWord, knownWord, foundLetters, guesses } = this.state
+    const newGuesses = guesses + 1
+    let count = 0
     for (let index = 0; index < secretWord.length; index++) {
-      if(secretWord[index] === char) {
-        console.log(secretWord[index])
+      if(secretWord[index] === char && knownWord[index] === '_') {
         knownWord[index] = char
+        count++
       }      
     }
 
-    this.setState({ knownWord: knownWord })
+    this.setState({ knownWord: knownWord, foundLetters: foundLetters + count, guesses: newGuesses })
+    
+    return
+  }
 
+  playAgain = () => {
+    this.setState({ knownWord: ['_','_','_','_','_','_','_','_'], guesses: 0, foundLetters: 0 })
     return
   }
 
   render() {
-    const { user, secretWord, knownWord, guesses, win } = this.state
+    const { user, secretWord, knownWord, guesses, win, foundLetters } = this.state
+    const won = foundLetters === secretWord.length
+
     return (
       <div className="the_hangman_game">
 
-          {user === null && (
-            <Login />
-          )}
+        <div>Essais : {guesses}</div>
 
-          {user !== null && win === false && (
-            <Game knownWord={knownWord} onClick={this.action} />
-          )}
+        {user === null && (
+          <Login />
+        )}
+        
+        {user !== null && won === false && (
+          <Game knownWord={knownWord} onClick={this.action} />
+        )}
 
-          {win === true && (
-            <Win secretWord={secretWord} />
-          )}
+        {won === true && (
+          <Win playAgain={this.playAgain} />
+        )}
 
       </div>
     )  
