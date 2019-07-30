@@ -5,6 +5,7 @@ import Login from './Login/Login'
 import Keyboard from './Keyboard/Keyboard'
 import Win from './Win/Win'
 import Lose from './Lose/Lose'
+import Words from '../../words.json'
 import hangman1 from '../../picture/hangman1.png';
 import hangman2 from '../../picture/hangman2.png';
 import hangman3 from '../../picture/hangman3.png';
@@ -21,7 +22,7 @@ class App extends Component {
 
   state = {
     user: 'Alex',
-    secretWord: "CHOCOLAT",
+    secretWord: null,
     knownWord: ['_','_','_','_','_','_','_','_'],
     errors: 0,
     foundLetters: 0
@@ -54,13 +55,36 @@ class App extends Component {
       errors: 0, 
       foundLetters: 0 
     })
+    return 
+  }
+
+  initGame = () => {
+    const json = require('../../words.json');
+    const secretWord = json[Math.floor(Math.random() * Math.floor(json.length))];
+
+    let knownWord = new Array(secretWord.length); 
+    knownWord.fill('_');
+
+    this.setState({ 
+      secretWord: secretWord, 
+      knownWord: knownWord,
+      errors: 0, 
+      foundLetters: 0 
+    })
+    
     return
   }
 
   render() {
-    const { user, secretWord, knownWord, errors, foundLetters } = this.state
-    const won = foundLetters === secretWord.length
-    const lose = errors === 10
+    const { user, knownWord, errors, foundLetters, secretWord } = this.state;
+    const lose = errors === 10;
+    let won = false;
+
+    if(secretWord == null) {
+      this.initGame();
+    } else {
+      won = foundLetters === secretWord.length
+    }
 
     return (
       <div className="the_hangman_game">
@@ -68,7 +92,7 @@ class App extends Component {
         {user === null && (
           <Login />
         )}
-        
+
         {user !== null && (
           <div className="knownWord">
               {knownWord.map((char, index) => (
@@ -82,11 +106,11 @@ class App extends Component {
         )}
 
         {won === true && lose === false && (
-          <Win errors={errors} playAgain={this.playAgain} />
+          <Win errors={errors} playAgain={this.initGame} />
         )}
         
         {lose === true && won === false && (
-          <Lose secretWord={secretWord} playAgain={this.playAgain} />
+          <Lose secretWord={secretWord} playAgain={this.initGame} />
         )}
 
         {user !== null && (
