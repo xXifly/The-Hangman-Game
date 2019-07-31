@@ -5,7 +5,7 @@ import './Key.css'
 
 const Key = ({ char, onClick }) => (
     <span className="key">
-        <button onClick={() => onClick(char)}> {char} </button>
+        <button id={char} onClick={() => onClick(char)}> {char} </button>
     </span>
 )
   

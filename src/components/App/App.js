@@ -28,7 +28,7 @@ class App extends Component {
     foundLetters: 0
   }
 
-  action = char => {
+  pressKey = char => {
     const { secretWord, knownWord, foundLetters, errors } = this.state
 
     let count = 0
@@ -38,6 +38,8 @@ class App extends Component {
         count++
       }      
     }
+
+    document.getElementById(char).classList.add('tested');
 
     if(count === 0){
       const newErrors = errors + 1
@@ -102,7 +104,7 @@ class App extends Component {
         )}
 
         {user !== null && won === false && lose === false && (
-          <Keyboard onClick={this.action} />
+          <Keyboard onClick={this.pressKey} />
         )}
 
         {won === true && lose === false && (

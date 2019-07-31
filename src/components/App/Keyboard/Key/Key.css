@@ -7,3 +7,7 @@
 .key button:hover {
     background-color: #ffe494;
 }
+
+.key .tested {
+    background-color: #f6eac6;
+}
