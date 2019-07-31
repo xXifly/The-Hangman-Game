@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 
-import Login from './Login/Login'
 import Keyboard from './Keyboard/Keyboard'
 import Win from './Win/Win'
 import Lose from './Lose/Lose'
-import Words from '../../words.json'
+
 import hangman1 from '../../picture/hangman1.png';
 import hangman2 from '../../picture/hangman2.png';
 import hangman3 from '../../picture/hangman3.png';
@@ -28,9 +27,11 @@ class App extends Component {
     foundLetters: 0
   }
 
+  /** Fonction executée lors du clique sur une touche du clavier */
   pressKey = char => {
     const { secretWord, knownWord, foundLetters, errors } = this.state
 
+    // Ajoute la lettre choisi dans le tableau des lettres trouvées
     let count = 0
     for (let index = 0; index < secretWord.length; index++) {
       if(secretWord[index] === char && knownWord[index] === '_') {
@@ -39,34 +40,33 @@ class App extends Component {
       }      
     }
 
+    // Grise la lettre selectionnée
     document.getElementById(char).classList.add('tested');
 
+    // Si erreur, on incrémente le compteur
     if(count === 0){
       const newErrors = errors + 1
       this.setState({ errors: newErrors })
     }
 
+    // On met à jour l'état
     this.setState({ knownWord: knownWord, foundLetters: foundLetters + count })
     
     return
   }
 
-  playAgain = () => {
-    this.setState({ 
-      knownWord: ['_','_','_','_','_','_','_','_'], 
-      errors: 0, 
-      foundLetters: 0 
-    })
-    return 
-  }
-
+  /** Initialise la partie */
   initGame = () => {
+
+    // Choisit un mot aléatoire dans le dictionnaire
     const json = require('../../words.json');
     const secretWord = json[Math.floor(Math.random() * Math.floor(json.length))];
 
+    // Remplit le tableau des lettres trouvées
     let knownWord = new Array(secretWord.length); 
     knownWord.fill('_');
 
+    // Initialise l'état
     this.setState({ 
       secretWord: secretWord, 
       knownWord: knownWord,
@@ -90,10 +90,8 @@ class App extends Component {
 
     return (
       <div className="the_hangman_game">
+
         <div className="title">The Hangman Game</div>
-        {user === null && (
-          <Login />
-        )}
 
         {user !== null && (
           <div className="knownWord">

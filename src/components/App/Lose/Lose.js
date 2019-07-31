@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import './Lose.css'
 
+// Rendu du paneau d'affichage en cas de défaite
 const Lose = ({ secretWord, playAgain }) => (
     <div className="lose">
         <div className="defeat-panel">
@@ -14,6 +15,7 @@ const Lose = ({ secretWord, playAgain }) => (
 )
   
 Lose.propTypes = {
+    secretWord: PropTypes.string.isRequired,
     playAgain: PropTypes.func.isRequired
 }
 

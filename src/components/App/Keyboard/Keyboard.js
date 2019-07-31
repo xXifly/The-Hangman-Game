@@ -7,6 +7,7 @@ import Key from './Key/Key'
 
 const ALPHABET = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
+// Rendu du clavier
 const Keyboard = ({ onClick }) => (
     <div className="keyboard">
         <div className="message">Entrez une lettre :</div>
@@ -17,10 +18,7 @@ const Keyboard = ({ onClick }) => (
 )
   
 Keyboard.propTypes = {
-    knownWord: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ),
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default Keyboard

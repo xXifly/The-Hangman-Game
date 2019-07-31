@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import './Win.css'
 
+// Rendu du paneau d'affichage en cas de victoire
 const Win = ({ errors, playAgain }) => (
     <div className="win">
         <div className="victory-panel">
@@ -14,7 +15,8 @@ const Win = ({ errors, playAgain }) => (
 )
   
 Win.propTypes = {
-    secretWord: PropTypes.string.isRequired
+    errors: PropTypes.number.isRequired,
+    playAgain: PropTypes.func.isRequired
 }
 
 export default Win
