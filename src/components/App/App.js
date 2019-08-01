@@ -115,17 +115,17 @@ class App extends Component {
 
         {user !== null && (
           <div className="picture">
-            { errors === 0 && <img src={hangman1} /> }
-            { errors === 1 && <img src={hangman2} /> }
-            { errors === 2 && <img src={hangman3} /> }
-            { errors === 3 && <img src={hangman4} /> }
-            { errors === 4 && <img src={hangman5} /> }
-            { errors === 5 && <img src={hangman6} /> }
-            { errors === 6 && <img src={hangman7} /> }
-            { errors === 7 && <img src={hangman8} /> }
-            { errors === 8 && <img src={hangman9} /> }
-            { errors === 9 && <img src={hangman10} /> }
-            { errors === 10 && <img src={hangman11} /> }
+            { errors === 0 && <img src={hangman1} alt="1 erreur sur 11" /> }
+            { errors === 1 && <img src={hangman2} alt="2 erreur sur 11" /> }
+            { errors === 2 && <img src={hangman3} alt="3 erreur sur 11" /> }
+            { errors === 3 && <img src={hangman4} alt="4 erreur sur 11" /> }
+            { errors === 4 && <img src={hangman5} alt="5 erreur sur 11" /> }
+            { errors === 5 && <img src={hangman6} alt="6 erreur sur 11" /> }
+            { errors === 6 && <img src={hangman7} alt="7 erreur sur 11" /> }
+            { errors === 7 && <img src={hangman8} alt="8 erreur sur 11" /> }
+            { errors === 8 && <img src={hangman9} alt="9 erreur sur 11" /> }
+            { errors === 9 && <img src={hangman10} alt="10 erreur sur 11" /> }
+            { errors === 10 && <img src={hangman11} alt="11 erreur sur 11" /> }
           </div>
         )}
 
